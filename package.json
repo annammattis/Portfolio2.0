@@ -11,7 +11,9 @@
     "url": "git+https://github.com/annammattis/Portfolio2.0.git"
   },
   "author": "Anna-Marjorie Mattis",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/annammattis/Portfolio2.0/issues"
   },
   "dependencies": {
     "express": "^4.17.1"
