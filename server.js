@@ -1,47 +1,34 @@
-// const express = require('express');
-// const path = require('path');
-// const PORT = process.env.PORT || 5000;
-// const http = require('http');
-// const fs = require('fs');
+// server.js
 
-// express()
-//   .use(express.static(path.join(__dirname, 'parallax-template')))
-//   .set('js', path.join(__dirname, 'js'))
-//   .set('js')
-//   .get('/', (req, res) => res.render('parallax-template/server'))
-//   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+/**
+ * Required External Modules
+ */
+const express = require("express");
+const path = require("path");
 
-  // function onRequest(req, res) {
-  //   res.writeHead(200, {'Content-Type': 'text/html'});
-  //   fs.readFile('parallax-template/index.html', null, function(error, data) {
-  //     if (error) {
-  //       res.writeHead(404);
-  //       res.write('file not found');
-  //     } else {
-  //       res.write(data);
-  //     }
-  //     res.end();
-  //   });
-  // }
-
-  // http.createServer(onRequest).listen(5000);
-const express = require('express');
+/**
+ * App Variables
+ */
 const app = express();
-
-//set port
-const port = process.env.PORT || 5000
-
-app.use(express.static(__dirname));
-
-//routes
-
-app.get("/", function(req, res) {
-  res.render("index");
+const port = process.env.PORT || 5000;
+/**
+ *  App Configuration
+ */
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "pug");
+/**
+ * Routes Definitions
+ */
+app.get("/", (req, res) => {
+    // res.status(200).send('index.html');
+    res.sendFile(path.join(__dirname + 'app/index.html'));
 })
-
-app.listen(port, function() {
-  console.log('app running');
-})
-
-
-  console.log('Server running on localhost:5000')
+app.get("/", (req, res) => {
+    res.render("index", { title: "Home" });
+  });
+/**
+ * Server Activation
+ */
+app.listen(port, () => {
+    console.log('Running on localhost:5000');
+});
